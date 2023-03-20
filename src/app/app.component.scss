@@ -1,0 +1,101 @@
+#header {
+  display: flex;
+  height: 202px;
+  align-items: flex-end;
+}
+
+.item {
+  height: 50px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.item.active, item:hover {
+  background-color: #460d22;
+  opacity: 90%;
+}
+
+.item:hover {
+  background-color: #460d22;
+  opacity: 90%;
+  cursor: pointer;
+}
+
+.hr1 {
+  width: 50%;
+  height: 5px;
+  &.active {
+    background-color: #fe3056;
+  }
+
+}
+
+.hr2 {
+  width: 50%;
+  height: 5px;
+  &.active {
+    background-image: linear-gradient(to right, #fe3056, #f1006d, #dc0084, #bd009a, #9215ad);
+  }
+}
+
+#hrs {
+  display: flex;
+}
+
+#container {
+  height: 3000px;
+  width: 100%;
+  background-image: linear-gradient(to right top, #030011, #07001b, #0a0023, #0a012b, #080134);
+}
+
+#vodlist {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card-content {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+mat-card {
+  background: #18181b;
+  width: 80%;
+}
+
+mat-card-header {
+  color: white;
+}
+mat-card-subtitle {
+  color:  #adadb8;
+}
+
+mat-card-actions {
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#vod {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.example-card {
+  margin-top: 10px;
+}
+
+.songlist {
+  border-width: 4px;
+  border-style: solid;
+  border-image: linear-gradient(to right, #18181b, #531fb2) 1;
+  margin-top: 5px;
+}
