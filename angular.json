@@ -25,7 +25,13 @@
               "src/assets",
               "src/manifest.json",
               "src/content.js",
-              "src/background.js"
+              "src/background.js",
+              "src/twitch.css",
+              "src/modal.html",
+              "src/css/fontawesome.min.css",
+              "src/css/regular.min.css",
+              "src/webfonts/fa-regular-400.woff2",
+              "src/totem.html"
             ],
             "styles": [
               "src/custom-theme.scss",

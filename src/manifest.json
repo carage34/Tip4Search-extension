@@ -17,7 +17,7 @@
   ],
   "content_scripts": [
     {
-      "matches": ["https://www.twitch.tv/videos/*"],
+      "matches": ["https://www.twitch.tv/*", "https://twitch.tv/*/*", "https://twitch.tv/*/*/*"],
       "js": ["content.js"],
       "css": ["css/fontawesome.min.css", "css/regular.min.css", "twitch.css"],
       "run_at": "document_start"
@@ -29,7 +29,8 @@
         "css/fontawesome.min.css",
         "css/regular.min.css",
         "webfonts/fa-regular-400.woff2",
-        "modal.html"
+        "modal.html",
+        "totem.html"
       ],
       "matches": ["<all_urls>"]
     }
