@@ -1,0 +1,53 @@
+.container-card {
+  width: 300px;
+  height: 350px;
+  position: absolute;
+  top:-400% !important;
+  left: 76% !important;
+  border-radius: 0.6rem !important;
+  background-color: #1f1f23 !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,5),0 0px 4px rgba(0,0,0,4); !important;
+  color: inherit !important;
+  overflow-y: scroll;
+}
+
+.close {
+  position: relative !important;
+  width: 100% !important;
+}
+
+.fermer {
+  border-radius: 0,4rem;
+  display: block;
+  width: 100%;
+  color: inherit;
+  padding: 10px !important;
+}
+
+.fermer:hover {
+  cursor: pointer;
+  background-color: rgba(83,83,95,.48);
+}
+
+.songlist {
+  border-width: 4px;
+  border-style: solid;
+  border-image: linear-gradient(to right, #18181b, #531fb2) 1;
+  margin-top: 8px;
+}
+
+.hide {
+  display: none;
+}
+
+@media screen and (max-width: 1110px) {
+  .container-card {
+    top: -350% !important;
+  }
+}
+
+@media screen and (max-width: 1900px) {
+  .container-card {
+    left: 65% !important;
+  }
+}

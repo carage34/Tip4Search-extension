@@ -4,40 +4,72 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 var tabid = null;
 var offsetr = null;
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+let twitchid = "";
+chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   console.log('Message received: ', message);
-  let newURL = "https://www.twitch.tv/videos/";
-  chrome.tabs.create({url: `${newURL}${message.videoid}`}).then((tab) => {
-    offsetr = message.offset;
-    tabid = tab.id;
-    console.log("backgroud script");
-    console.log(tab.id);
+    let newURL = "https://www.twitch.tv/videos/";
+    chrome.tabs.create({url: `${newURL}${message.videoid}`}).then((tab) => {
+      offsetr = message.offset;
+      tabid = tab.id;
+      console.log("backgroud script");
+      console.log(tab.id);
 
-    console.log("creation tab");
-    chrome.scripting.executeScript(
-      {
-        target : {tabId : tabid},
-        func: () => {
-          return document.body;
-        },
-      }
-    ).then(res => {
-      console.log(res);
-    })
-      .catch(err => {
-        console.log(err);
+      console.log("creation tab");
+      chrome.scripting.executeScript(
+        {
+          target : {tabId : tabid},
+          func: () => {
+            return document.body;
+          },
+        }
+      ).then(res => {
+        console.log(res);
       })
+        .catch(err => {
+          console.log(err);
+        })
 
-  }).then(res => {
+    }).then(res => {
 
-  }).catch((err) => {
-    console.log("erreur creation tab");
-    console.log(err);
-  })
+    }).catch((err) => {
+      console.log("erreur creation tab");
+      console.log(err);
+    })
+
 });
 
 chrome.tabs.onUpdated.addListener(function (tabId , info) {
+
   if (info.status === 'complete') {
+    chrome.tabs.query({active: true, lastFocusedWindow: true}).then((tabs) => {
+      console.log(tabs);
+      let url = tabs[0].url;
+      let twitchId = url.split('/')[4].split('?')[0];
+      if(twitchid !== twitchId) {
+        chrome.scripting.executeScript(
+          {
+            target : {tabId : tabId},
+            func: () => {
+              if(twitchid !== "") {
+
+                let close = document.querySelector('.close');
+
+                return true;
+              }
+            },
+          }
+        ).then(() => {
+          twitchid = twitchId;
+          chrome.tabs.sendMessage(tabs[0].id, {action: "loadSongs", twitchId: twitchId}, function(response) {
+          });
+        })
+      }
+    });
+
+
+
+
+    console.log(info);
     console.log(offsetr);
     chrome.scripting.executeScript({
       target : {tabId : tabid},
