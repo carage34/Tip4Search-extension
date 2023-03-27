@@ -5,12 +5,14 @@ chrome.runtime.onInstalled.addListener(() => {
 var tabid = null;
 var offsetr = null;
 let twitchid = "";
+let setOffset = false;
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   console.log('Message received: ', message);
     let newURL = "https://www.twitch.tv/videos/";
 
     // Ouvrir une VOD dans un nouvel onglet à un timecode donné
     chrome.tabs.create({url: `${newURL}${message.videoid}`}).then((tab) => {
+      setOffset = true;
       offsetr = message.offset;
       tabid = tab.id;
     }).catch((err) => {
@@ -21,7 +23,6 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
 
 chrome.tabs.onUpdated.addListener(function (tabId , info) {
   if (info.status === 'complete') {
-
     // Nouvel onglet chargé
     chrome.tabs.query({active: true, lastFocusedWindow: true}).then((tabs) => {
       let twitchId = "999";
@@ -37,14 +38,18 @@ chrome.tabs.onUpdated.addListener(function (tabId , info) {
     });
 
     // Execution d'un script pour modifier le timecode du lecteur twitch
-    chrome.scripting.executeScript({
-      target : {tabId : tabid},
-      func : setTimestamp,
-      args: [offsetr]
-    }).then(res => {
-      console.log("script complete");
-      console.log(res);
-    });
+    console.log("oops");
+    if(setOffset) {
+      chrome.scripting.executeScript({
+        target : {tabId : tabid},
+        func : setTimestamp,
+        args: [offsetr]
+      }).then(res => {
+        console.log("script complete");
+        setOffset = false;
+        console.log(res);
+      });
+    }
   }
 });
 
