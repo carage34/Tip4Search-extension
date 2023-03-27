@@ -15,7 +15,7 @@ export class AppComponent{
   title = 'angular-chrome-app';
   public videos: Video[];
   constructor(private videoService: VideoService) {
-
+    // Logique récupération VODs et message des gagnants qui contient les morceaux joués
     videoService.getVideos().subscribe((videos: Video[]) => {
       this.videos = videos;
       this.videos.forEach((video) => {
@@ -24,10 +24,15 @@ export class AppComponent{
           video.messages = messages;
         })
       });
+      // Afficher les VODs les plus récente
       this.videos.reverse();
     });
   }
 
+  /**
+   * Retourne les messages des gagnants qui contient les morceaux joués par videoid
+   * @param id video
+   */
   public getMessages(id: string) {
     return new Observable<Message[]>(observer => {
       this.videoService.getMessageByVideoId(id).subscribe((messages) => {
@@ -37,23 +42,40 @@ export class AppComponent{
     })
   }
 
+  /**
+   * Affiche ou cache la liste des morceaux joués pour une VOD
+   * @param video
+   */
   public toggleShowSong(video: Video) {
     video.showSong = !video.showSong;
 
   }
 
-  public async goToTimestamp(video: Video, offsetSecond: number) {
-    chrome.tabs.query({active: true, lastFocusedWindow: true}).then((tabs) => {
-      console.log("query");
-      console.log(tabs)
+  /**
+   * Convertit un nombre de secondes au format hh:mm:ss
+   * @param message
+   */
+  public formatTimestamp(message: any) {
+    let timestamp = ""
+    if(message.offsetSeconds < 3600) {
+      timestamp = new Date(message.offsetSeconds * 1000).toISOString().substring(14, 19);
+    } else {
+      timestamp = new Date(message.offsetSeconds * 1000).toISOString().substring(11, 19);
+    }
+    return timestamp;
+  }
 
-      let newURL = "https://www.twitch.tv/videos/";
-      //chrome.tabs.create({url: `${newURL}${video.twitchid}`}).then((tab) => {
-        chrome.runtime.sendMessage({ tabid: tabs[0].id, videoid: `${video.twitchid}`, offset: offsetSecond }, (response) => {
-          // 3. Got an asynchronous response with the data from the service worker
-          console.log('received user data', response);
-        });
-      //});
+  /**
+   * Ouvre une VOD dans un nouvel onglet au timecode indiqué
+   * @param video
+   * @param offsetSecond
+   */
+  public async goToTimestamp(video: Video, offsetSecond: number) {
+    // Récupère l'onglet actuel
+    chrome.tabs.query({active: true, lastFocusedWindow: true}).then((tabs) => {
+      // Envoie les infos de la VOD au service worker (background.js)
+      chrome.runtime.sendMessage({ action: 'open', tabid: tabs[0].id, videoid: `${video.twitchid}`, offset: offsetSecond }, (response) => {
+      });
     });
   }
 }

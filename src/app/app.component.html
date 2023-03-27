@@ -21,18 +21,20 @@
           <mat-card-title>{{ video.name }}</mat-card-title>
           <mat-card-subtitle>Publié {{ video.postedAt | date: 'à HH:mm, le d MMMM yyyy' }}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content>
+        <!--<mat-card-content>
           <img src="{{ video.thumbnail }}" width="250" height="143" alt="thumbnail">
-        </mat-card-content>
+        </mat-card-content>-->
         <mat-card-actions>
           <p>Nombre de morceaux joués : {{ video.messages.length }}</p>
           <button mat-flat-button (click)="toggleShowSong(video)">{{ video.showSong ? 'Cacher la liste' : 'Afficher la liste' }}</button>
           <div *ngIf="video.showSong">
             <div *ngFor="let message of video.messages" class="songlist">
               <p>
-                <b>Artiste : </b> <span>{{ message.song?.artist }}</span>
-                <span class="titre"> <b> Titre : </b> {{ message.song?.name }}</span>
-                <span (click)="goToTimestamp(video, message.offsetSeconds)"> Y aller</span>
+                <b>Artiste : </b> <span>{{ message.song?.artist }}</span><br><br>
+                <span class="titre"> <b> Titre : </b> {{ message.song?.name }}</span><br><br>
+                <button mat-flat-button (click)="goToTimestamp(video, message.offsetSeconds)">
+                  Ouvrir la VOD à {{ formatTimestamp(message) }}
+                </button>
               </p>
 
             </div>

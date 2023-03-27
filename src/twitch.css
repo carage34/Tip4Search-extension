@@ -17,16 +17,16 @@
 }
 
 .fermer {
-  border-radius: 0,4rem;
+
   display: block;
   width: 100%;
   color: inherit;
   padding: 10px !important;
 }
 
-.fermer:hover {
+.close-label {
   cursor: pointer;
-  background-color: rgba(83,83,95,.48);
+  padding: 5px;
 }
 
 .songlist {
@@ -50,4 +50,74 @@
   .container-card {
     left: 65% !important;
   }
+}
+ .container-card p, .container-card b, .container-card span {
+   color: white !important;
+ }
+.container-card a {
+   color: #bf94ff !important;
+ }
+.close-label {
+  color: white;
+}
+
+
+.buttonitem {
+  position: relative !important;
+  width: 100% !important;
+}
+
+.cbutton {
+  border-radius: 0.4rem;
+  display: block;
+  width: 100%;
+  color: inherit;
+}
+
+.ibutton {
+  display: flex !important;
+  -webkit-box-align: center !important;
+  align-items: center !important;
+  position: relative !important;
+  padding: 0.5rem !important;
+}
+
+.jbutton {
+  display: flex !important;
+  -webkit-box-align: center !important;
+  align-items: center !important;
+  padding-right: 0.5rem !important;
+  flex-shrink: 0 !important;
+}
+
+.bbutton {
+  display: flex !important;
+  -webkit-box-align: center !important;
+  align-items: center !important;
+}
+
+.jabutton {
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
+}
+
+.hbutton {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.kbutton {
+  padding-bottom: 100%;
+}
+
+.hbutton > :not(.ScAspectSpacer-sc-18km980-0) {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  min-height: 100%;
+  top: 0px;
 }

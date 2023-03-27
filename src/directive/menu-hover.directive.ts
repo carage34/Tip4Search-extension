@@ -3,6 +3,10 @@ import {Directive, ElementRef, HostListener, Renderer2} from '@angular/core';
 @Directive({
   selector: '[appMenuHover]'
 })
+
+/**
+ * Directive qui permet de gérer la subrillance des item du menu
+ */
 export class MenuHoverDirective {
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
