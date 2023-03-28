@@ -8,4 +8,6 @@ export class Video {
   messages: Message[];
   showSong: boolean = false;
   twitchid: string;
+  available: boolean;
+  youtubeid: string;
 }

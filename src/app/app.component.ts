@@ -74,7 +74,7 @@ export class AppComponent{
     // Récupère l'onglet actuel
     chrome.tabs.query({active: true, lastFocusedWindow: true}).then((tabs) => {
       // Envoie les infos de la VOD au service worker (background.js)
-      chrome.runtime.sendMessage({ action: 'open', tabid: tabs[0].id, videoid: `${video.twitchid}`, offset: offsetSecond }, (response) => {
+      chrome.runtime.sendMessage({ action: 'open', tabid: tabs[0].id, videoid: `${video.twitchid}`, offset: offsetSecond, video: video }, (response) => {
       });
     });
   }

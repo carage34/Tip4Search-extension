@@ -8,10 +8,21 @@ let twitchid = "";
 let setOffset = false;
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   console.log('Message received: ', message);
-    let newURL = "https://www.twitch.tv/videos/";
+    let newURL = "";
+    let id = "";
+
+    if(message.video.available) {
+      newURL = "https://www.twitch.tv/videos/";
+      id = message.video.twitchid;
+    } else {
+      newURL = "https://www.youtube.com/watch?v=";
+      console.log(newURL);
+      console.log(id);
+      id = message.video.youtubeid;
+    }
 
     // Ouvrir une VOD dans un nouvel onglet à un timecode donné
-    chrome.tabs.create({url: `${newURL}${message.videoid}`}).then((tab) => {
+    chrome.tabs.create({url: `${newURL}${id}`}).then((tab) => {
       setOffset = true;
       offsetr = message.offset;
       tabid = tab.id;
@@ -48,7 +59,10 @@ chrome.tabs.onUpdated.addListener(function (tabId , info) {
         console.log("script complete");
         setOffset = false;
         console.log(res);
-      });
+      })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 });
