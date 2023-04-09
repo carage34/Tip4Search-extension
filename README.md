@@ -1,27 +1,56 @@
-# AngularChromeApp
+<p align="center">  
+  <img src="totem.png" alt="Logo" width=128 height=128>
+	<h3 align="center">Tip4Search</h3>  
+	<p align="center">  
+		Extention destiné à la communauté du streamer Twitch TipStevens
+		<br>  
+		Permet de retrouver la liste des morceaux joués lors des streams du dimanche  
+	  <br/ >
+		<a href="https://github.com/carage34/Tip4Search-extension/issues/new">Signaler un bug</a>  
+	</p>  
+</p>  
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
 
-## Development server
+# Sommaire  
+  
+- [Téléchargement et installation](#téléchargement-et-installation)  
+- [Les fonctionnalités](#les-fonctionnalités)  
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Téléchargement et installation
 
-## Code scaffolding
+## <b>Pour Firefox</b>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+L'extension est à installer depuis le site d'addon Mozilla : <a href="https://addons.mozilla.org/fr/firefox/addon/tip4search/">https://addons.mozilla.org/fr/firefox/addon/tip4search/</a>
 
-## Build
+## <b>Pour Google Chrome</b>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Télécharger la dernière release dans la <a href="https://github.com/besuper/Tip4Search-extension/releases">section release</a><br/>
+Dézipper le fichier Tip4Search.zip.<br/>
+Vous devez installer l'extension manuellement.
 
-## Running unit tests
+- Aller dans "Gérer les extensions" (**chrome://extensions/** dans chrome)
+- Vérifier que le  **Mode développeur** est activé
+- Cliquez sur **Charger l'extension décompressé** et selectionnez le dossier précédemment dézippé.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Les fonctionnalités
 
-## Running end-to-end tests
+### <b>Dans l'extension</b>
+<li>
+<ul>
+Liste des morceaux joués lors des streams du dimanche avec redirection vers la VOD au moment précis
+Recherche d'un morceau joué dans toutes les VODs du dimanche
+</ul>
+</li>
+<div style="display:flex; flex-direction:row;">
+<img src="captureext1.png" style="width:30%; height:30%;">
+<img src="captureext2.png" style="width:30%; height:30%;">
+</div>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Sur Twitch
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<li>
+<ul>
+Totem ajouté dans la barre du lecteur qui permet d'afficher les morceaux joués dans la VOD.
+</ul>
+</li>
+<img src="captureext3.png" style="width:50%; height:50%;">
