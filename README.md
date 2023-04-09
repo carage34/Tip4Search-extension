@@ -24,7 +24,7 @@ L'extension est à installer depuis le site d'addon Mozilla : <a href="https://a
 
 ## <b>Pour Google Chrome</b>
 
-Télécharger la dernière release dans la <a href="https://github.com/besuper/Tip4Search-extension/releases">section release</a><br/>
+Télécharger la dernière release dans la <a href="https://github.com/carage34/Tip4Search-extension/releases/tag/1.0.0">section release</a><br/>
 Dézipper le fichier Tip4Search.zip.<br/>
 Vous devez installer l'extension manuellement.
 
