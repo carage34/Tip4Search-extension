@@ -37,7 +37,7 @@ Vous devez installer l'extension manuellement.
 ### <b>Dans l'extension</b>
 <li>
 <ul>
-Liste des morceaux joués lors des streams du dimanche avec redirection vers la VOD au moment précis
+Liste des morceaux joués lors des streams du dimanche avec redirection vers la VOD au moment précis<br/>
 Recherche d'un morceau joué dans toutes les VODs du dimanche
 </ul>
 </li>
