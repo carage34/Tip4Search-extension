@@ -2,7 +2,7 @@
   <img src="totem.png" alt="Logo" width=128 height=128>
 	<h3 align="center">Tip4Search</h3>  
 	<p align="center">  
-		Extention destiné à la communauté du streamer Twitch TipStevens
+		Extention destinée à la communauté du streamer Twitch TipStevens
 		<br>  
 		Permet de retrouver la liste des morceaux joués lors des streams du dimanche  
 	  <br/ >
