@@ -3,7 +3,7 @@ import {Song} from "./song.model";
 
 export class Message {
   _id: string;
-  video: Video;
+  video: any
   winner: String[];
   postedAt: Date;
   done: boolean;

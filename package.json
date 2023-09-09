@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build && npm run copy:build",
+    "chrome":"ng build && cd dist/angular-chrome-app && mv manifest_chrome.json manifest.json",
+    "mozilla": "ng build && cd dist/angular-chrome-app && mv manifest_mozilla.json manifest.json",
     "copy:build": "copy dist\\angular-chrome-app\\main*.js ..\\main.js & copy dist\\angular-chrome-app\\polyfills*.js ..\\polyfills.js & copy dist\\angular-chrome-app\\runtime*.js ..\\runtime.js & copy dist\\angular-chrome-app\\styles*.css ..\\styles.css",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -22,8 +24,11 @@
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
     "@types/chrome": "^0.0.224",
+    "@types/webextension-polyfill": "^0.10.0",
+    "bootstrap": "^5.2.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "webextension-polyfill": "^0.10.0",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {

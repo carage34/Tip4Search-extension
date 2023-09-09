@@ -10,6 +10,12 @@ import {HttpClientModule} from "@angular/common/http";
 import localeFr from '@angular/common/locales/fr';
 import {registerLocaleData} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {MatExpansionModule} from "@angular/material/expansion";
 registerLocaleData(localeFr);
 
 @NgModule({
@@ -23,7 +29,13 @@ registerLocaleData(localeFr);
     BrowserAnimationsModule,
     MatCardModule,
     HttpClientModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatSelectModule,
+    MatExpansionModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'}

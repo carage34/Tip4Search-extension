@@ -9,7 +9,8 @@ import {Message} from "../models/message.model";
 })
 export class VideoService {
 
-  public API_URL = "http://localhost:4000/api";
+  public API_URL = "https://sam.absolumentpc77-informatique.fr/api";
+  //public API_URL = "http://localhost:4000/api";
 
   constructor(private http: HttpClient) { }
 
@@ -36,5 +37,9 @@ export class VideoService {
     video.thumbnail = video.thumbnail.replace("%{width}", "350");
     video.thumbnail = video.thumbnail.replace("%{height}", "200");
     return video;
+  }
+
+  public getTitlesByArtist(artist: string) {
+    return this.http.get<string[]>(`${this.API_URL}/songs/artist/${artist}`);
   }
 }

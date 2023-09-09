@@ -24,7 +24,7 @@
       "ES2022",
       "dom"
     ],
-    "types": [ "Chrome" ]
+    "types": [ "Chrome", "Webextension-polyfill" ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

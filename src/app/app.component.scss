@@ -1,3 +1,7 @@
+.year {
+  font-size: 30px;
+}
+
 #header {
   display: flex;
   height: 202px;
@@ -7,7 +11,6 @@
 .item {
   height: 50px;
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,12 +67,14 @@ mat-card-content {
 
 mat-card {
   background: #0e0e10;
-  width: 80%;
+  width: 90%;
   padding: 15px;
 }
 
 mat-card-header {
   color: white;
+  display: flex;
+  flex-direction: column;
 }
 mat-card-subtitle {
   color:  #adadb8;
@@ -82,11 +87,15 @@ mat-card-actions {
   flex-direction: column;
 }
 
-#vod {
+.vod {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+h2 {
+  color: white;
 }
 
 .example-card {
@@ -99,8 +108,17 @@ mat-card-actions {
   border-image: linear-gradient(to right, #18181b, #531fb2) 1;
   margin-top: 5px;
   width: 300px;
-  display: flex;
+}
+
+.res {
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.res button {
+  width: 80%;
+  margin-bottom: 5px;
 }
 
 button.mdc-button {
@@ -109,4 +127,138 @@ button.mdc-button {
 
 button.mdc-button {
   color: white !important;
+}
+
+h3, h4 {
+  color: white;
+  text-align: center;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: blue !important;
+}
+
+.example-card {
+  text-align: center;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#autocomplete {
+  border: 1px solid silver;
+  outline: none;
+  margin: 0;
+  background: #fff;
+  font-size: 17px;
+}
+
+.search label{
+  font-size: 17px;
+}
+
+#autocomplete_result {
+  border: 1px solid silver;
+  border-top: 0;
+  overflow: auto;
+  max-height: 150px;
+  background: #fff;
+}
+
+#autocomplete_resultm {
+  border: 1px solid silver;
+  border-top: 0;
+  overflow: auto;
+  max-height: 150px;
+  background: #fff;
+  width: 200px;
+}
+
+#autocompletem, #autocomplete, #autocomplete_result {
+  width: 200px;
+  box-sizing: border-box;
+}
+
+#autocompletem, #autocomplete, #autocomplete_result p {
+  padding: 4px;
+  margin: 0;
+  color: #000;
+  font-size: 17px;
+}
+
+#autocomplete_resultm, #autocomplete_result p {
+  background-color: #424242;
+  color: white;
+}
+
+#autocomplete_resultm, #autocomplete_result p:hover {
+  background: #515151;
+}
+
+.item-song {
+  background-color: #424242;
+  padding: 4px;
+  margin: 0;
+}
+
+.item-song:hover {
+  background: #515151;
+}
+
+.form-control {
+  background-color: #4a4a4a !important;
+  color: white !important;
+}
+
+.form-control:hover {
+  background-color:  #575757 !important;
+}
+
+.form-control:focus {
+  background-color:  #707070 !important;
+}
+
+.search label {
+  color: white;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: .375rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.accordeon {
+  width: 90% !important;
+  margin-bottom: 10px;
+}
+
+.mat-expansion-panel-content {
+  background-color: rgb(29, 29, 30) !important;
+}
+
+.mat-expansion-panel {
+  background-color: #1f1f23 !important;
+}
+
+.mat-expansion-panel {
+  margin-bottom: 10px;
+}
+.mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+  color: rgba(255, 255, 255, 0.7) !important;
 }

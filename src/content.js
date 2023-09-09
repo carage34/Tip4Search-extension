@@ -24,6 +24,8 @@ function fetchTotemDom() {
         document.querySelector('.container-card').classList.toggle('hide');
       });
       resolve();
+    }).catch(err => {
+      console.log(err);
     });
   });
 }
@@ -55,7 +57,7 @@ function fetchModalDom() {
 function fetchSongsDom(message) {
   return new Promise((resolve, reject) => {
     // Récupération des morceaux
-    fetch(`http://localhost:4000/api/messages/twitch/${message.twitchId}`)
+    fetch(`https://sam.absolumentpc77-informatique.fr/api/messages/twitch/${message.twitchId}`)
       .then((response) => response.json())
       .then((data) => {
         twitchId = message.twitchId;
@@ -117,7 +119,7 @@ function fetchSongsDom(message) {
  */
 function isVod(twitchid) {
   return new Promise((resolve, reject) => {
-    fetch(`http://localhost:4000/api/videos/isVod/${twitchid}`)
+    fetch(`https://sam.absolumentpc77-informatique.fr/api/videos/isVod/${twitchid}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.isVOD) {
@@ -127,7 +129,7 @@ function isVod(twitchid) {
         }
       }).catch(err => {
       console.log(err);
-    })
+    });
   })
 }
 
@@ -135,6 +137,7 @@ async function startFetch(message) {
   loading = true;
   console.log("START FETCH");
   let isvod = await isVod(message.twitchId);
+  console.log("is Vod" + isvod);
   if (isvod) {
     // Supprime l'icone et la modal pour prévenir un potentiel ajout multiple
     let modals = document.getElementsByClassName('container-card');
@@ -152,6 +155,7 @@ async function startFetch(message) {
     console.log("END FETCH");
 
   } else {
+    console.log("removed");
     // Supprime l'icone et la modal si on est plus sur une vod de tipstevens
     loading = false;
     let totem = document.getElementsByClassName('open');
@@ -168,7 +172,10 @@ async function startFetch(message) {
 
 // Ecoute les messages envoyés par le background script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log(message);
+  console.log(message.offset);
+  sendResponse("test");
+  console.log("here");
+  console.log(loading);
   console.log("Loading status : " + loading);
   if (!loading) {
     startFetch(message);

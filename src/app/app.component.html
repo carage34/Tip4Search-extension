@@ -1,10 +1,10 @@
 <div id="header">
-  <div class="item active vod" appMenuHover>
-    <p>Liste des VODs</p>
+  <div class="item active vod" appMenuHover (click)="this.active = 'songlist'">
+    <p style="margin-top: auto !important; font-size: 17px;">Liste des VODs</p>
   </div>
 
-  <div class="item search" appMenuHover>
-    <p>Chercher un morceau joué</p>
+  <div class="item search" appMenuHover (click)="this.active = 'search'">
+    <p style="margin-top: auto !important; font-size: 17px;">Chercher un morceau joué</p>
   </div>
 
 </div>
@@ -13,35 +13,127 @@
   <div class="hr2"></div>
 </div>
 
-<div id="container" style="padding-top: 20px;">
+<div id="container">
+  <div *ngIf="this.active === 'songlist'">
+    <div class="vod">
+      <ng-container *ngFor="let itemYear of this.year">
+        <h2>{{ itemYear.year }}</h2>
+        <span class="accordeon">
 
-    <div id="vod">
-      <mat-card class="example-card" *ngFor="let video of videos">
-        <mat-card-header>
-          <mat-card-title>{{ video.name }}</mat-card-title>
-          <mat-card-subtitle>Publié {{ video.postedAt | date: 'à HH:mm, le d MMMM yyyy' }}</mat-card-subtitle>
-          <p *ngIf="!video.available" style="color:#af8282">La VOD n'est plus disponible sur Twitch</p>
-          <p *ngIf="!video.youtubeid && !video.available" style="color:#af8282;">La VOD n'a pas encore été uplodé sur Youtube</p>
-        </mat-card-header>
-        <!--<mat-card-content>
-          <img src="{{ video.thumbnail }}" width="250" height="143" alt="thumbnail">
-        </mat-card-content>-->
-        <mat-card-actions>
-          <p>Nombre de morceaux joués : {{ video.messages.length }}</p>
-          <button mat-flat-button (click)="toggleShowSong(video)">{{ video.showSong ? 'Cacher la liste' : 'Afficher la liste' }}</button>
-          <div *ngIf="video.showSong">
-            <div *ngFor="let message of video.messages" class="songlist">
-              <p>
-                <b>Artiste : </b> <span>{{ message.song?.artist }}</span><br><br>
-                <span class="titre"> <b> Titre : </b> {{ message.song?.name }}</span><br><br>
-                <button mat-flat-button *ngIf="video.available || video.youtubeid" (click)="goToTimestamp(video, message.offsetSeconds)">
+        <mat-accordion *ngFor="let item of getMonths(itemYear.year)">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h3>{{ item.name }}</h3>
+              </mat-panel-title>
+              <mat-panel-description>
+                {{ item.videos.length }} VODs ( {{ item.nbSong }} morceaux)
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="vod">
+              <mat-card class="example-card" *ngFor="let video of item.videos">
+                <mat-card-header>
+                  <mat-card-title>{{ video.name }}</mat-card-title>
+                  <mat-card-subtitle>Publié {{ video.postedAt | date: 'à HH:mm, le d MMMM yyyy' }}</mat-card-subtitle>
+                  <p *ngIf="video.youtubeid">La VOD a été upload sur Youtube</p>
+                  <p *ngIf="!video.youtubeid && !video.available" style="color:#af8282;">La VOD n'a pas encore été upload sur Youtube</p>
+                </mat-card-header>
+                <mat-card-actions>
+                  <p>Nombre de morceaux joués : {{ video.messages.length }}</p>
+                  <button mat-flat-button (click)="toggleShowSong(video)">{{ video.showSong ? 'Cacher la liste' : 'Afficher la liste' }}</button>
+                  <div *ngIf="video.showSong">
+                    <div *ngFor="let message of video.messages" class="songlist">
+                      <div *ngIf="message.done">
+                        <p>
+                          <b>Artiste : </b> <span>{{ message.song?.artist }}</span><br><br>
+                          <span class="titre"> <b> Titre : </b> {{ message.song?.name }}</span><br><br>
+                          <button mat-flat-button *ngIf="video.available || video.youtubeid" (click)="goToTimestamp(video, message.offsetSeconds)">
+                            Ouvrir la VOD à {{ formatTimestamp(message) }}
+                          </button>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </span>
+      </ng-container>
+
+    </div>
+
+
+  </div>
+  <div *ngIf="this.active === 'search'" class="search">
+    <label for="autocomplete">Choisir un artiste</label>
+    <input id="autocomplete" (click)="show(true)" (blur)="show(false)" class="form-control" [formControl]="artistControl" placeholder="Choisir un artiste" type="text" />
+    <div id="autocomplete_result">
+      <p class="item-song" (click)="artistSelected(option)" *ngFor="let option of filteredOptions | async">{{option}}</p>
+    </div>
+    <br>
+    <label for="autocomplete">Choisir un morceau</label>
+    <input id="autocompletem" (click)="showm(true)" (blur)="showm(false)" [formControl]="nameControl" class="form-control" placeholder="Choisir un morceau" type="text" />
+    <div id="autocomplete_result" class="autocomplete_resultm">
+      <p (click)="selectedSong(song)" *ngFor="let song of songs">{{song}}</p>
+    </div>
+    <!--<mat-card class="example-card">
+      <mat-card-header>
+        <h4>Trouver un morceau joué</h4>
+      </mat-card-header>
+      <mat-card-actions>
+
+
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label for="artist">Choisir un artiste</mat-label>
+          <input type="text"
+                 placeholder="Choisir un artiste"
+                 aria-label="Artist"
+                 matInput
+                 id="artist"
+                 [formControl]="artistControl"
+                 (ngModelChange) ="selected()"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" (change) ="selected()">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Choisir un morceau</mat-label>
+          <mat-select (valueChange)="selectedSong($event)">
+            <mat-option *ngFor="let song of songs" [value]="song">
+              {{song}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-actions>
+    </mat-card>-->
+
+    <mat-card class="example-card" *ngIf="res">
+      <mat-card-header>
+        <h3>Le morceau {{songChoose}} a été joué {{ getNumberOfTimePlayed(songPlayedList) }} fois</h3>
+      </mat-card-header>
+      <mat-card-actions>
+        <div>
+          <div *ngFor="let message of songPlayedList">
+            <div class="songlist res">
+              <br>
+                Joué {{ message.video.postedAt | date: 'à HH:mm, le d MMMM yyyy' }}
+              <br>
+              <p *ngIf="message.video.youtubeid">La VOD a été upload sur Youtube</p>
+              <p *ngIf="!message.video.youtubeid && !message.video.available" style="color:#af8282;">La VOD n'a pas encore été upload sur Youtube</p>
+                <button mat-flat-button *ngIf="message.video?.available || message.video?.youtubeid" (click)="goToTimestamp(message.video, message.offsetSeconds)">
                   Ouvrir la VOD à {{ formatTimestamp(message) }}
                 </button>
-              </p>
             </div>
           </div>
-
-        </mat-card-actions>
-      </mat-card>
-    </div>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

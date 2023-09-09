@@ -24,6 +24,8 @@
               "src/favicon.ico",
               "src/assets",
               "src/manifest.json",
+              "src/manifest_chrome.json",
+              "src/manifest_mozilla.json",
               "src/content.js",
               "src/background.js",
               "src/twitch.css",
@@ -31,13 +33,15 @@
               "src/css/fontawesome.min.css",
               "src/css/regular.min.css",
               "src/webfonts/fa-regular-400.woff2",
-              "src/totem.html"
+              "src/totem.html",
+              "src/browser-polyfill.js"
             ],
             "styles": [
               "src/custom-theme.scss",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {
