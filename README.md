@@ -24,9 +24,7 @@ L'extension est à installer depuis le site d'addon Mozilla : <a href="https://a
 
 ## <b>Pour Google Chrome</b>
 
-L'extension est à installer depuis le chrome web store : <a href="[https://addons.mozilla.org/fr/firefox/addon/tip4search/](https://chrome.google.com/webstore/detail/tip4search/iclpjmghplflehggcdlmbipliebogphn?hl=fr&authuser=0
-)">[https://addons.mozilla.org/fr/firefox/addon/tip4search/](https://chrome.google.com/webstore/detail/tip4search/iclpjmghplflehggcdlmbipliebogphn?hl=fr&authuser=0
-)</a> 
+L'extension est à installer depuis le chrome web store : <a href="https://chrome.google.com/webstore/detail/tip4search/iclpjmghplflehggcdlmbipliebogphn?hl=fr&authuser=0">https://chrome.google.com/webstore/detail/tip4search/iclpjmghplflehggcdlmbipliebogphn?hl=fr&authuser=0</a>
 # Les fonctionnalités
 
 ### <b>Dans l'extension</b>
