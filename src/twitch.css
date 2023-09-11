@@ -2,8 +2,8 @@
   width: 300px;
   height: 350px;
   position: absolute;
-  top:-400% !important;
-  left: 76% !important;
+  top:-1229% !important;
+  left: 43% !important;
   border-radius: 0.6rem !important;
   background-color: #1f1f23 !important;
   box-shadow: 0 6px 16px rgba(0,0,0,5),0 0px 4px rgba(0,0,0,4); !important;
@@ -29,6 +29,10 @@
   padding: 5px;
 }
 
+#closemodal {
+  max-height: 100px !important;
+}
+
 .songlist {
   border-width: 4px;
   border-style: solid;
@@ -42,13 +46,13 @@
 
 @media screen and (max-width: 1110px) {
   .container-card {
-    top: -350% !important;
+    top:-1229% !important;
   }
 }
 
 @media screen and (max-width: 1900px) {
   .container-card {
-    left: 65% !important;
+    left: 43% !important;
   }
 }
  .container-card p, .container-card b, .container-card span {
@@ -121,3 +125,4 @@
   min-height: 100%;
   top: 0px;
 }
+

@@ -7,3 +7,6 @@ body {
   background-image: url("assets/img/bg.jpeg"); background-repeat: no-repeat;
 }
 
+:host ::ng-deep .mat-expansion-indicator::after {
+color: #959090 !important;
+}

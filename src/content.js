@@ -18,10 +18,16 @@ function fetchTotemDom() {
     fetch(chrome.runtime.getURL('/totem.html')).then(r => r.text()).then(html => {
       let container = document.querySelector(RIGHT_CONTROLS);
       container.insertAdjacentHTML('afterbegin', html);
-      let totem = document.querySelector('.open');
+      let totem = document.querySelector('#closetotem');
 
-      totem.addEventListener('click', () => {
-        document.querySelector('.container-card').classList.toggle('hide');
+      totem.addEventListener('click', (e) => {
+        console.log(e);
+        if(document.querySelector('.container-card') != null) {
+          if(e.srcElement.id === 'totem' || e.srcElement.id === 'totemplz') {
+            console.log("Hide totem");
+            document.querySelector('.container-card').classList.toggle('hide');
+          }
+        }
       });
       resolve();
     }).catch(err => {
@@ -38,10 +44,11 @@ function fetchModalDom() {
   return new Promise((resolve, reject) => {
     let modals = document.getElementsByClassName('container-card');
     fetch(chrome.runtime.getURL('/modal.html')).then(r => r.text()).then(html => {
-      document.getElementsByClassName('eXTUnT')[0].insertAdjacentHTML('beforeend', html);
-      let close = document.querySelector('.close');
-
-      close.addEventListener('click', () => {
+      document.getElementsByClassName('gMrqwn')[0].insertAdjacentHTML('beforeend', html);
+      let close = document.querySelector('#closemodal');
+      console.log(close);
+      close.addEventListener('click', (e) => {
+        console.log("Hide modal")
         document.querySelector('.container-card').classList.toggle('hide');
       });
       resolve();

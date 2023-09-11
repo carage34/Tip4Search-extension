@@ -262,3 +262,11 @@ h3, h4 {
 .mat-expansion-panel-header-description, .mat-expansion-indicator::after {
   color: rgba(255, 255, 255, 0.7) !important;
 }
+
+.mat-expansion-indicator::after {
+  color: #7e7e7e
+}
+
+:host ::ng-deep .mat-expansion-indicator::after {
+  color: #959090 !important;
+}
